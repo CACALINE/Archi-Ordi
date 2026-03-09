@@ -1,0 +1,12 @@
+.pos 0x00
+    
+    irmovl 5, %ecx
+    irmovl 2, %eax
+    
+label:
+    addl %eax, %eax
+    loop label
+    
+    
+    
+ halt

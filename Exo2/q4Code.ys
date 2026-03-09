@@ -1,0 +1,59 @@
+.pos 0
+init:
+    irmovl stack, %esp
+    mrmovl valeur, %eax
+    mrmovl pdeux, %ebx
+    pushl %ebx
+    pushl %eax
+    call f
+    iaddl 8, %esp
+    rmmovl %eax, valeur
+    halt
+
+f:
+    mrmovl 4(%esp), %eax
+    mrmovl 8(%esp), %ecx
+    irmovl tab, %ebx
+    irmovl 4, %edx
+
+loop:
+    andl %ecx, %ecx
+    je done
+    addl %edx, %ebx
+    isubl 1, %ecx
+    jmp loop
+
+done:
+    jmem 0(%ebx)
+
+case3:
+    addl %eax, %eax
+    addl %eax, %eax
+    addl %eax, %eax
+    ret
+
+case2:
+    addl %eax, %eax
+    addl %eax, %eax
+    ret
+
+case1:
+    addl %eax, %eax
+    ret
+
+case0:
+    ret
+
+.pos 0x100
+valeur: .long 5
+pdeux:  .long 1
+
+.pos 0x150
+tab:
+    .long 0x069   # case0
+    .long 0x066   # case1
+    .long 0x061   # case2
+    .long 0x05a   # case3
+
+.pos 0x200
+stack:

@@ -1,0 +1,39 @@
+.pos 0x0
+init:       irmovl stack,%esp
+            mrmovl n, %eax
+            pushl %eax
+            
+            mrmovl dst, %eax
+            pushl %eax
+            
+            mrmovl src, %eax
+            pushl %eax
+            
+            call strncpy
+
+strncpy:    mrmovl 4(%esp), %eax    # src
+            mrmovl 8(%esp), %ebx    # dst
+            mrmovl 12(%esp), %edx   # n
+            
+for:          
+            
+            loopne for
+            
+
+
+            .pos 0x100
+src:       .long 0
+            .long 1
+            .long 2
+            .long 3
+            
+dst:       .long 0
+            .long 0
+            .long 0
+            .long 0
+            
+n:         .long 4
+
+# Stack
+            .pos 0x200
+stack:

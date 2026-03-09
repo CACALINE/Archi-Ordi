@@ -1,0 +1,13 @@
+        .pos 0
+init:   irmovl stack,%esp
+        mrmovl a, %eax
+        mrmovl b, %ebx
+        jreg %eax
+        halt
+
+        .pos 0x50
+a: .long 6
+b: .long 10
+
+        .pos 0x100
+stack:
